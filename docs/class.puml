@@ -1,0 +1,310 @@
+@startuml msgr
+
+skinparam linetype polyline
+
+package "frameworks_and_drivers" {
+    note as frameworks_and_drivers_description
+        В этой директории реализуется всё,
+        что связано с конкретными технологиями,
+        которые использует приложение.
+        Например, http сервер реализован с помощью FastApi,
+        а взаимодействие с бд с помощью SQLAlchemy.
+    end note
+    package web {
+        note as N1
+        В этой директории расположены все файлы и логика для работы веб-сервера.
+        end note
+    }
+    
+    package repositories {
+        note as repositories_description
+        В этой директории реализуется логика работы с хранилищем
+        end note
+        class SqlAlchemyUserRepository {
+            + __init__(self, db_session: AsyncSession) -> None
+        }
+        class SqlAlchemyChatRepository {
+            + __init__(self, db_session: AsyncSession) -> None
+        }
+        class SqlAlchemyMessageRepository {
+            + __init__(self, db_session: AsyncSession) -> None
+        }
+        class SqlAlchemyNotificationRepository {
+            + __init__(self, db_session: AsyncSession) -> None
+        }
+    }
+
+    package db {
+        note as db_description
+        В этой директории реализуется логика работы с базой данных PostgreSQL 
+        средствами SQLAlchemy и alembic.
+        end note
+        package "models" {
+            note as models_description
+            В этой директории описаны таблицы БД
+            end note  
+            class User {
+                + id: INT [PK]
+                + username: VARCHAR(50)
+                + email: VARCHAR(100)
+                + password_hash: VARCHAR(128)
+                + created_at: TIMESTAMP
+            }
+            class Chat {
+                + id: INT [PK]
+                + name: VARCHAR(100)
+                + is_group: BOOLEAN
+                + created_at: TIMESTAMP
+            }
+            class UserChat {
+                + user_id: INT [FK -> users.id]
+                + chat_id: INT [FK -> chats.id]
+            }
+            class Message {
+                + id: INT [PK]
+                + content: TEXT
+                + sender_id: INT [FK -> users.id]
+                + chat_id: INT [FK -> chats.id]
+                + created_at: TIMESTAMP
+            }
+            class Notification {
+                + id: INT [PK]
+                + user_id: INT [FK -> users.id]
+                + message: TEXT
+                + is_read: BOOLEAN
+                + created_at: TIMESTAMP
+            }
+
+            User --{ UserChat
+            Chat --{ UserChat
+            Chat ---{ Message
+            User ---{ Message
+            User --{ Notification
+        }
+        package "migrations" {
+            note as migrations_description
+            В этой директории реализуется логика миграций БД с помощью alembic.
+            end note
+        }
+    }
+}
+
+package "interface_adapters" {
+    note as interface_adapters_description
+        В этой директории реализуются адаптеры интерфейсов.
+        Задача — преобразовывать данные между внутренними форматами, которые 
+        используются бизнес-логикой (например, сущности), и форматами, которые 
+        поступают из внешних источников (например, запросы,
+        данные из баз данных или ответы внешних сервисов).
+    end note
+
+    package controllers {
+        note as controllers_description
+        Контроллер в чистой архитектуре принимает данные (например, Pydantic 
+        модели из FastAPI), но эти данные должны быть преобразованы в DTO (layer_dtos), 
+        которые используются для взаимодействия с бизнес-логикой (UseCase). Это изолирует 
+        бизнес-логику от деталей фреймворка (в данном случае, FastAPI и Pydantic) 
+        и позволяет легко менять детали реализации входных данных, не затрагивая логику приложения.
+        end note
+
+        class UserController {
+            + __init__(self, create_usecase: UserCreateUseCase, get_by_id_usecase: UserGetByIdUseCase, delete_usecase: UserDeleteUseCase, get_chats_usecase: UserGetChatsUseCase) -> None
+            + create(user_input_dto: UserInputPydanticDto) -> UserPresenter
+            + get_by_id(id: int) -> UserPresenter
+            + delete(id: int) -> None
+            + get_chats(offset: int, limit: int) -> PaginatedPresenter<ChatPresenter>
+        }
+        class ChatController {
+            + __init__(self, create_usecase: ChatCreateUseCase, get_by_id_usecase: ChatGetByIdUseCase, delete_usecase: ChatDeleteUseCase, get_users_usecase: ChatGetUsersUseCase, add_user_usecase: ChatAddUserUseCase, delete_user_usecase: ChatDeleteUserUseCase) -> None
+            + create(chat_input_dto: ChatInputPydanticDto) -> ChatPresenter
+            + get_by_id(id: int) -> ChatPresenter
+            + delete(id: int) -> None
+            + get_users(offset: int, limit: int) -> PaginatedPresenter<UserPresenter>
+            + add_user(id: int) -> None
+            + delete_user(id: int) -> None
+        }
+        class MessageController {
+            + __init__() -> None
+        }
+    }
+
+    package presenters {
+        note as presenters_description
+        В этой директории реализуются презентеры, которые преобразуют данные из
+        DTO логики (layer_dtos) в json сериализуемый объект, пригодный для ответа API.
+        В реализации следует наследоваться от pydantic BaseModel
+        end note
+        class UserPresenter {
+            + id: int
+            + username: str
+            + email: str
+            + password_hash: str
+            + created_at: datetime
+        }
+        class ChatPresenter {
+            + id: int
+            + name: str
+            + is_group: bool
+            + created_at: datetime
+        }
+        class MessagePresenter {
+            + id: int
+            + content: str
+            + sender_id: int
+            + chat_id: int
+            + created_at: datetime
+        }
+        class PaginatedPresenter<T> {
+            next: url
+            previous: url
+            result: list[T]
+        }
+    }
+
+    package dtos {
+        note as dtos_description
+        В этой директории описаны DTO (Data Transfer Objects) — объекты,
+        которые передаются между различными уровнями приложения.
+        end note
+        package request_dtos {
+            note as request_dtos_description
+            В этой директории описаны DTO, которые передаются от внешних источников 
+            (например, от клиента) в приложение. В реализации следует наследоваться
+            от pydantic BaseModel
+            end note
+            ' TODO описать pydantic модели запросов ws rpc api / external kafka rpc api / inner kafka api
+            ' в контроллере назвал их как <сущность>InputPydanticDto
+        }
+        package layer_dtos {
+            note as layer_dtos_description
+            В этой директории описаны DTO, которые передаются между слоями и используются 
+            непосредственно в логике приложения классами на уровне репозиториев/
+            сценариев использования/сущностей. В реализации следует использовать 
+            python dataclass.
+            end note
+            class UserInputDto {
+                + username: str
+                + email: str
+                + password_hash: str
+            }
+            class ChatInputDto {
+                + name: str
+                + is_group: bool
+            }
+            class MessageInputDto {
+                + content: str
+                + sender_id: int
+                + chat_id: int
+            }
+            class UserDto {
+                + id: int
+                + username: str
+                + email: str
+                + password_hash: str
+                + created_at: datetime
+            }
+            class ChatDto {
+                + id: int
+                + name: str
+                + is_group: bool
+                + created_at: datetime
+            }
+            class MessageDto {
+                + id: int
+                + content: str
+                + sender_id: int
+                + chat_id: int
+                + created_at: datetime
+            }
+        }
+    }
+
+    package repositories {
+        note as repositories_description
+        В этой директории реализованы протоколы репозиториев
+        end note
+        interface UserRepositoryProtocol {
+            + create(input_dto: UserInputDto) -> UserDto
+            + get_by_id(id: int) -> UserDto
+            + delete(id: int) -> None
+        }
+        interface ChatRepositoryProtocol {
+            + create(input_dto: UserInputDto) -> ChatDto
+            + get_by_id(id: int) -> ChatDto
+            + delete(id: int) -> None
+        }
+        interface MessageRepositoryProtocol {
+            + create(input_dto: UserInputDto) -> MessageDto
+            + get_by_id(id: int) -> MessageDto
+            + delete(id: int) -> None
+        }
+    }
+}
+
+package usecases {
+    note as usecases_description
+        В этой директории реализуется бизнес-логика приложения.
+        Задача - описать все бизнес-процессы, которые касаются домменных объектов.
+    end note
+    abstract class AbstractUseCase {
+        + execute(*args, **kwargs) -> Any
+    }
+    package user_domain {
+        class UserCreateUseCase {
+            + __init__(user_repository: UserRepositoryProtocol) -> None
+            + execute(input_dto: UserInputDto) -> UserDto
+        }
+        class UserGetByIdUseCase {
+            + __init__(user_repository: UserRepositoryProtocol) -> None
+            + execute(id: int) -> UserDto
+        }
+        class UserDeleteUseCase {
+            + __init__(user_repository: UserRepositoryProtocol) -> None
+            + execute(id: int) -> None
+        }
+        class UserGetChatsUseCase {
+            + __init__(user_repository: UserRepositoryProtocol) -> None
+            + execute(offset: int, limit: int) -> list[ChatDto]
+        }
+    }
+    package chat_domain {
+        class ChatCreateUseCase {
+            + __init__(chat_repository: ChatRepositoryProtocol) -> None
+            + execute(input_dto: ChatInputDto) -> ChatDto
+        }
+        class ChatGetByIdUseCase {
+            + __init__(chat_repository: ChatRepositoryProtocol) -> None
+            + execute(id: int) -> ChatDto
+        }
+        class ChatDeleteUseCase {
+            + __init__(chat_repository: ChatRepositoryProtocol) -> None
+            + execute(id: int) -> None
+        }
+        class ChatGetUsersUseCase {
+            + __init__(user_repository: UserRepositoryProtocol) -> None
+            + execute(offset: int, limit: int) -> list[UserDto]
+        }
+    }
+    package message_domain {
+    }
+}
+
+package entities {
+    note as entities_description
+        Место для сущностей,
+        которые могут использоваться
+        в различных областях кода:
+        например, enum статусов.
+    end note
+}
+
+' global flow
+frameworks_and_drivers -down---> interface_adapters
+interface_adapters -down---> usecases
+usecases -down---> entities
+
+UserRepositoryProtocol ..up..> SqlAlchemyUserRepository
+ChatRepositoryProtocol ..up..> SqlAlchemyChatRepository
+MessageRepositoryProtocol ..up..> SqlAlchemyMessageRepository
+
+@enduml
