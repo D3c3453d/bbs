@@ -1,0 +1,105 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0" version="26.1.1">
+  <diagram name="Страница — 1" id="J1-pgPerd9fnIlDgHCO0">
+    <mxGraphModel dx="1221" dy="778" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="ziQ_R86RXSqxmXaQTbEm-1" value="PROCESS" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="540" y="40" width="200" height="620" as="geometry" />
+        </mxCell>
+        <mxCell id="ziQ_R86RXSqxmXaQTbEm-2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="ziQ_R86RXSqxmXaQTbEm-1" source="ziQ_R86RXSqxmXaQTbEm-3" target="ziQ_R86RXSqxmXaQTbEm-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ziQ_R86RXSqxmXaQTbEm-3" value="Старт" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="ziQ_R86RXSqxmXaQTbEm-1">
+          <mxGeometry x="25" y="30" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ziQ_R86RXSqxmXaQTbEm-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="ziQ_R86RXSqxmXaQTbEm-1" source="ziQ_R86RXSqxmXaQTbEm-5" target="ziQ_R86RXSqxmXaQTbEm-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ziQ_R86RXSqxmXaQTbEm-5" value="Регистрация или авторизация пользователя&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="ziQ_R86RXSqxmXaQTbEm-1">
+          <mxGeometry x="40" y="120" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ziQ_R86RXSqxmXaQTbEm-6" value="Создание или поиск групп по интересам" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="ziQ_R86RXSqxmXaQTbEm-1">
+          <mxGeometry x="40" y="200" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ziQ_R86RXSqxmXaQTbEm-7" value="Обращение к базе данных по запросу" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="ziQ_R86RXSqxmXaQTbEm-1">
+          <mxGeometry x="40.00368421052622" y="284.5" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ziQ_R86RXSqxmXaQTbEm-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="ziQ_R86RXSqxmXaQTbEm-1" source="ziQ_R86RXSqxmXaQTbEm-6" target="ziQ_R86RXSqxmXaQTbEm-7">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="105.47368421052624" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ziQ_R86RXSqxmXaQTbEm-9" value="Выдача результата поиска&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="ziQ_R86RXSqxmXaQTbEm-1">
+          <mxGeometry x="40" y="370" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ziQ_R86RXSqxmXaQTbEm-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="ziQ_R86RXSqxmXaQTbEm-1" source="ziQ_R86RXSqxmXaQTbEm-7" target="ziQ_R86RXSqxmXaQTbEm-9">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="105" y="380" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ziQ_R86RXSqxmXaQTbEm-11" value="Обмен сообщениями в чатах" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="ziQ_R86RXSqxmXaQTbEm-1">
+          <mxGeometry x="40" y="460" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ziQ_R86RXSqxmXaQTbEm-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="ziQ_R86RXSqxmXaQTbEm-1" source="ziQ_R86RXSqxmXaQTbEm-9" target="ziQ_R86RXSqxmXaQTbEm-11">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="105" y="470" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ziQ_R86RXSqxmXaQTbEm-13" value="Конец" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="ziQ_R86RXSqxmXaQTbEm-1">
+          <mxGeometry x="25" y="545" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ziQ_R86RXSqxmXaQTbEm-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="ziQ_R86RXSqxmXaQTbEm-1" source="ziQ_R86RXSqxmXaQTbEm-11" target="ziQ_R86RXSqxmXaQTbEm-13">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="105.47368421052624" y="550" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ziQ_R86RXSqxmXaQTbEm-15" value="&lt;span style=&quot;font-weight: 700;&quot;&gt;SUPPLIER&lt;/span&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="40" width="200" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="ziQ_R86RXSqxmXaQTbEm-16" value="Пользователи" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="ziQ_R86RXSqxmXaQTbEm-15">
+          <mxGeometry y="30" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ziQ_R86RXSqxmXaQTbEm-17" value="&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;API сторонних сервисов (боты)&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="ziQ_R86RXSqxmXaQTbEm-15">
+          <mxGeometry y="60" width="200" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="ziQ_R86RXSqxmXaQTbEm-18" value="Серверы и дата-центры" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="ziQ_R86RXSqxmXaQTbEm-15">
+          <mxGeometry y="130" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ziQ_R86RXSqxmXaQTbEm-19" value="INPUT" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="290" y="40" width="200" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="ziQ_R86RXSqxmXaQTbEm-20" value="Текст из строки запроса поиска (Группы, человека)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="ziQ_R86RXSqxmXaQTbEm-19">
+          <mxGeometry y="30" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="ziQ_R86RXSqxmXaQTbEm-21" value="Текст из сообщения другим пользователям" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="ziQ_R86RXSqxmXaQTbEm-19">
+          <mxGeometry y="80" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="ziQ_R86RXSqxmXaQTbEm-22" value="Информация из базы данных" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="ziQ_R86RXSqxmXaQTbEm-19">
+          <mxGeometry y="130" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ziQ_R86RXSqxmXaQTbEm-23" value="Интеграция сервисов (боты, платежи)&amp;nbsp;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="ziQ_R86RXSqxmXaQTbEm-19">
+          <mxGeometry y="210" width="200" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="ziQ_R86RXSqxmXaQTbEm-24" value="OUTPUT" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="790" y="40" width="200" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="ziQ_R86RXSqxmXaQTbEm-25" value="Отправленные и полученные сообщения" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="ziQ_R86RXSqxmXaQTbEm-24">
+          <mxGeometry y="30" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ziQ_R86RXSqxmXaQTbEm-26" value="Доступ к группам" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="ziQ_R86RXSqxmXaQTbEm-24">
+          <mxGeometry y="90" width="200" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="ziQ_R86RXSqxmXaQTbEm-27" value="Уведомления, актуальные данные" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="ziQ_R86RXSqxmXaQTbEm-24">
+          <mxGeometry y="160" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="ziQ_R86RXSqxmXaQTbEm-28" value="CUSTOMER" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="40" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ziQ_R86RXSqxmXaQTbEm-29" value="Владелец аккаунта (пользователь)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="ziQ_R86RXSqxmXaQTbEm-28">
+          <mxGeometry y="30" width="200" height="50" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
